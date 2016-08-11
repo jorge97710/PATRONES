@@ -1,46 +1,45 @@
-import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
- * * Clase que implementa la interfaz Stack, 
- * 	@author UVG
- * 	@version 1.4 Julio 24, 2016
- */
-public class StackArrayList<E> implements Stack<E>
-{
-	 /* Atributos */
-	protected ArrayList<E> data;
+*Utiliza la interfaz Stack<E> para crear un Stack que use la ADT Vector
+*@author UVG
+*/
 
-	public StackArrayList()
+public class StackList<E> implements Stack<E>
+{
+	protected List<E> vec; 
+	public StackList()
 	// post: constructs a new, empty stack
 	{
-		data = new ArrayList<E>();
+		 vec = new LinkedList<E>();
 	}
 
 	public void push(E item)
 	// post: the value is added to the stack
 	//          will be popped next if no intervening push
 	{
-		data.add(item);
+		vec.add(item);
 	}
 
 	public E pop()
 	// pre: stack is not empty
 	// post: most recently pushed item is removed and returned
 	{
-		return data.remove(size()-1);
+		return vec.remove(size()-1);
 	}
 
 	public E peek()
 	// pre: stack is not empty
 	// post: top value (next to be popped) is returned
 	{
-		return data.get(size() - 1);
+		return vec.get(size() - 1);
 	}
 	
 	public int size()
 	// post: returns the number of elements in the stack
 	{
-		return data.size();
+		return vec.size();
 	}
   
 	public boolean empty()
