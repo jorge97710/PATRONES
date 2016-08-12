@@ -1,13 +1,13 @@
 import java.util.ArrayList;
 
 /**
- * * Clase que implementa la interfaz Stack, 
- * 	@author UVG
- * 	@version 1.4 Julio 24, 2016
+ * * Clase que implementa la interfaz Stack,
+ * 
+ * @author UVG
+ * @version 1.4 Julio 24, 2016
  */
-public class StackArrayList<E> implements Stack<E>
-{
-	 /* Atributos */
+public class StackArrayList<E> implements Stack<E> {
+	/* Atributos */
 	protected ArrayList<E> data;
 
 	public StackArrayList()
@@ -18,7 +18,7 @@ public class StackArrayList<E> implements Stack<E>
 
 	public void push(E item)
 	// post: the value is added to the stack
-	//          will be popped next if no intervening push
+	// will be popped next if no intervening push
 	{
 		data.add(item);
 	}
@@ -27,7 +27,7 @@ public class StackArrayList<E> implements Stack<E>
 	// pre: stack is not empty
 	// post: most recently pushed item is removed and returned
 	{
-		return data.remove(size()-1);
+		return data.remove(size() - 1);
 	}
 
 	public E peek()
@@ -36,13 +36,13 @@ public class StackArrayList<E> implements Stack<E>
 	{
 		return data.get(size() - 1);
 	}
-	
+
 	public int size()
 	// post: returns the number of elements in the stack
 	{
 		return data.size();
 	}
-  
+
 	public boolean empty()
 	// post: returns true if and only if the stack is empty
 	{
