@@ -20,6 +20,7 @@ public class MainCalculadora {
 	/* Atributos */
 	static Stack<String> miStack = new StackVector<String>();
 	static String textoArray[], dire = "";
+	static typeFactory n = new typeFactory();
 
 	/**
 	 * LeerContenido recibe como parametro el archivo donde estan los datos.
