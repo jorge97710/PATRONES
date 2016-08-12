@@ -1,4 +1,9 @@
+package implementacion;
 import java.util.ArrayList;
+
+import abstractas.AbstractList;
+import abstractas.AbstractStack;
+import interfaces.Stack;
 
 /**
  * clase que implementa estructura de Pila (Stack).
@@ -6,7 +11,7 @@ import java.util.ArrayList;
  * @author UVG
  * @version 1 agosto 11, 2016
  */
-public class StackArrayList<E> implements Stack<E> {
+public class StackArrayList<E> extends AbstractStack<E> {
 	/* Atributos */
 	protected ArrayList<E> data;
 

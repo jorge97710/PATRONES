@@ -1,9 +1,14 @@
+package principal;
 import java.io.BufferedReader;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import javax.swing.JOptionPane;
+
+import fabricas.FabricaPilas;
+import implementacion.StackVector;
+import interfaces.Stack;
 
 /**
  * 
@@ -20,7 +25,7 @@ public class MainCalculadora {
 	/* Atributos */
 	static Stack<String> miStack = new StackVector<String>();
 	static String textoArray[], dire = "";
-	static typeFactory n = new typeFactory();
+	//static typeFactory n = new typeFactory();
 
 	/**
 	 * LeerContenido recibe como parametro el archivo donde estan los datos.

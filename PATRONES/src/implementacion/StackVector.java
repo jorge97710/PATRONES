@@ -1,11 +1,15 @@
+package implementacion;
 import java.util.Vector;
+
+import abstractas.AbstractStack;
+import interfaces.Stack;
 /**
  * clase que implementa estructura de Pila (Stack).
  *
  * @author UVG
  * @version 1 agosto 11, 2016
  */
-public class StackVector<E> implements Stack<E> {
+public class StackVector<E> extends AbstractStack<E>{
 	protected Vector<E> vec;
 
 	public StackVector()

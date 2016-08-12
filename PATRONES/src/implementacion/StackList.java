@@ -1,5 +1,9 @@
+package implementacion;
 import java.util.LinkedList;
 import java.util.List;
+
+import abstractas.AbstractStack;
+import interfaces.Stack;
 /**
  * clase que implementa estructura de Pila (Stack).
  *
@@ -7,7 +11,7 @@ import java.util.List;
  * @version 1 agosto 11, 2016
  */
 
-public class StackList<E> implements Stack<E> {
+public class StackList<E> extends AbstractStack<E> {
 	protected List<E> vec;
 
 	public StackList()

@@ -1,3 +1,4 @@
+package interfaces;
 /**
  * Interfaz para implementar una estructura de Pila (Stack).
  *
