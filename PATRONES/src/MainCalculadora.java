@@ -6,14 +6,15 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 
 /**
+ * 
+ * @author Carlos Calderon, 15219
+ * @author Jorge Azmitia,15202
+ * @version 1 agosto 11, 2016
+ * 
  * Esta clase se encarga de dar la interfaz para el programa. Lee un .txt con
  * una expresion en notacion polaca inversa, y luego despliega su respectivo
  * resultado.
  * 
- * @author Carlos Calderon, 15219
- * @author Jorge Azmitia,15202
- * @author Javier Jo,14343
- * @version 1.4 Julio 24, 2016
  */
 public class MainCalculadora {
 	/* Atributos */

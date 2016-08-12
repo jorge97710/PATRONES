@@ -3,6 +3,32 @@ public class DoublyLinkedNode<E> {
 	protected DoublyLinkedNode<E> nextElement;
 	protected DoublyLinkedNode<E> previousElement;
 
+	
+	public E getData() {
+		return data;
+	}
+
+	public void setData(E data) {
+		this.data = data;
+	}
+
+	public DoublyLinkedNode<E> getNextElement() {
+		return nextElement;
+	}
+
+	public void setNextElement(DoublyLinkedNode<E> nextElement) {
+		this.nextElement = nextElement;
+	}
+
+	public DoublyLinkedNode<E> getPreviousElement() {
+		return previousElement;
+	}
+
+	public void setPreviousElement(DoublyLinkedNode<E> previousElement) {
+		this.previousElement = previousElement;
+	}
+
+	
 	public DoublyLinkedNode(E v, DoublyLinkedNode<E> next,
 			DoublyLinkedNode<E> previous) {
 		data = v;
@@ -19,4 +45,6 @@ public class DoublyLinkedNode<E> {
 	{
 		this(v, null, null);
 	}
+
+	
 }

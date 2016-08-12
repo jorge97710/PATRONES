@@ -7,8 +7,7 @@ import org.junit.Test;
  * 
  * @author Carlos Calderon, 15219
  * @author Jorge Azmitia,15202
- * @author Javier Jo,14343
- * @version 1.4 Julio 24, 2016
+ * @version 1 agosto 11, 2016
  */
 public class CalculadoraPruebas {
 	/* Atributos */

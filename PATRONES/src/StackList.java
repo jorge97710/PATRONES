@@ -1,10 +1,10 @@
 import java.util.LinkedList;
 import java.util.List;
-
 /**
- * Utiliza la interfaz Stack<E> para crear un Stack que use la ADT Vector
+ * clase que implementa estructura de Pila (Stack).
  *
  * @author UVG
+ * @version 1 agosto 11, 2016
  */
 
 public class StackList<E> implements Stack<E> {

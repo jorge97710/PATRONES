@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 
 /**
- * * Clase que implementa la interfaz Stack,
- * 
+ * clase que implementa estructura de Pila (Stack).
+ *
  * @author UVG
- * @version 1.4 Julio 24, 2016
+ * @version 1 agosto 11, 2016
  */
 public class StackArrayList<E> implements Stack<E> {
 	/* Atributos */

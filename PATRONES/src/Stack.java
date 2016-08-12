@@ -2,7 +2,7 @@
  * Interfaz para implementar una estructura de Pila (Stack).
  *
  * @author UVG
- * @version 1.4 Julio 24, 2016
+ * @version 1 agosto 11, 2016
  */
 public interface Stack<E> {
 
