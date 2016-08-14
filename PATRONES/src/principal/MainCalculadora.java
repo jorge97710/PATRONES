@@ -1,13 +1,14 @@
 package principal;
 import java.io.BufferedReader;
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+
 import javax.swing.JOptionPane;
 
 import fabricas.FabricaPilas;
 import implementacion.StackVector;
+import interfaces.List;
 import interfaces.Stack;
 
 /**
@@ -22,7 +23,8 @@ import interfaces.Stack;
  * 
  */
 public class MainCalculadora {
-	
+	public static String tipoob="";
+	public static String tipo="";
 
 	
 	/**
@@ -30,6 +32,20 @@ public class MainCalculadora {
 	 */
 	public static void main(String[] args) throws IOException {
 
+		
+		System.out.println("ingresar tipo deseado (stack/list)");
+
+		
+		if ("stack".equalsIgnoreCase(tipo)){
+			
+			Stackfactory creadorStacks=  productfactory.stacks(tipoob);
+			Stack miStack= creadorStacks.crearStack(tipoob);
+		}
+		if("list".equalsIgnoreCase(tipo)){
+			ListaFactory creadorListas=  productfactory.listas(tipoob);
+			List miLista= creadorListas.crearLista(tipoob);
+			
+		}
 		Calculadora miCalculadora= Calculadora.getInstance();
 		miCalculadora.instru();
 	}
