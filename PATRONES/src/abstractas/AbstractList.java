@@ -1,24 +1,25 @@
 package abstractas;
 import interfaces.List;
 
-public abstract class AbstractList<E>
-       implements List<E>
-{
-   public AbstractList()
-   // post: does nothing
-   {
+/**
+ * Clase abstracta de la que heredan las listas enlazadas
+ * @author UVG
+ *@version 2.0  agosto 15, 2016
+ * @param <E> dato generico
+ */
+public abstract class AbstractList<E> implements List<E>{
+   
+/**
+ * Constructor
+ */
+public AbstractList(){
    }
 
-   public boolean isEmpty()
-   // post: returns true iff list has no elements
+   /* (non-Javadoc)
+ * @see interfaces.List#isEmpty()
+ */
+public boolean isEmpty()
    {
       return size() == 0;
    }
-  
-  public boolean contains(E value)
-  // pre: value is not null
-  // post: returns true iff list contains an object equal to value
-  {
-	return -1 != indexOf(value);
-  }
 }

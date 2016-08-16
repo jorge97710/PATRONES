@@ -4,146 +4,94 @@ import java.util.Iterator;
 
 import abstractas.AbstractList;
 
+
+/**
+ * Esta clase corresponde a una circular enlazada, y utiliza la clase Node.
+ * @author Carlos Calderon, 15219
+ * @author Jorge Azmitia,15202
+ * Inspirado en codigo de BB de UVG.
+ * @version 2.0 agosto 15, 2016
+ *
+ * @param <E> Dato generico, para indicar cual sera el tipo de dato que se ingresara a la lista.
+ */
+
 public class CircularList<E> extends AbstractList<E>{
+	/** Atributos**/
+	protected Node<E> tail; 
+	protected int count;
 
-protected Node<E> tail; 
-protected int count;
+	/**
+	 * Metodo constructor, inicializa lista circular, con cola vacia y contador inicializado.
+	 */
+	public CircularList(){
+		tail = null;
+		count = 0;
+	}
 
-public CircularList()
-// pre: constructs a new circular list
-{
-   tail = null;
-   count = 0;
-}
-
-public void addFirst(E value)
-// pre: value non-null
-// post: adds element to head of list
-{
-   Node<E> temp = new Node<E>(value);
-   if (tail == null) { // first value added
-       tail = temp;
-       tail.setNext(tail);
-   } else { // element exists in list
-       temp.setNext(tail.next());
-       tail.setNext(temp);
-   }
-   count++;
-}
-
-
-public void addLast(E value)
-// pre: value non-null
-// post: adds element to tail of list
-{
-   // new entry:
-   addFirst(value);
-   tail = tail.next();
-}
+	/**
+	 * Metodo addFirst, se encarga de anadir un elemento en el primer lugar de la lista.
+	 * @param Value, el valor que hay en el nodo
+	 */
+	public void addFirst(E Value){
+		Node<E> temp = new Node<E>(Value);
+		if (tail == null) { // first value added
+			tail = temp;
+			tail.setNext(tail);
+		} else { // element exists in list
+			temp.setNext(tail.next());
+			tail.setNext(temp);
+		}
+		count++;
+	}
 
 
-// lo dificil es quitar el elemento de la cola
-
-public E removeLast()
-// pre: !isEmpty()
-// post: returns and removes value from tail of list
-{
-   Node<E> finger = tail;
-   while (finger.next() != tail) {
-       finger = finger.next();
-   }
-   // finger now points to second-to-last value
-   Node<E> temp = tail;
-   if (finger == tail)
-   {
-       tail = null;
-   } else {
-       finger.setNext(tail.next());
-       tail = finger;
-   }
-   count--;
-   return temp.value();
-}
 
 
-    @Override
-    public E remove(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
-    @Override
-    public Iterator<E> iterator() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	/* (non-Javadoc)
+	 * @see interfaces.List#push(java.lang.Object)
+	 */
+	public void push(E value){
 
-    @Override
-    public int size() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+		addFirst(value);
+		tail = tail.next(); //Agregar al final de la lista
+	}
 
-    @Override
-    public void clear() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	/* (non-Javadoc)
+	 * @see interfaces.List#pop()
+	 */
+	/* (non-Javadoc)
+	 * @see interfaces.List#pop()
+	 */
+	public E pop(){
 
-    @Override
-    public E getFirst() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+		Node<E> finger = tail;
+		while (finger.next() != tail) {
+			finger = finger.next();
+		}
+		// finger now points to second-to-last value
+		Node<E> temp = tail;
+		if (finger == tail)
+		{
+			tail = null;
+		} else {
+			finger.setNext(tail.next());
+			tail = finger;
+		}
+		count--;
+		return temp.value();
+	}
 
-    @Override
-    public E getLast() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
-    @Override
-    public E removeFirst() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
-    @Override
-    public E remove(E value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	/* (non-Javadoc)
+	 * @see interfaces.List#size()
+	 */
+	@Override
+	public int size() {
+		return count;
+	}
 
-    @Override
-    public void add(E value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
-    @Override
-    public E remove() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public E get() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int indexOf(E value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int lastIndexOf(E value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public E get(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public E set(int i, E o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void add(int i, E o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
 }

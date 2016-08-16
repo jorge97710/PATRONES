@@ -1,19 +1,35 @@
 package principal;
 
 import java.io.BufferedReader;
+
 import java.io.FileReader;
-
 import javax.swing.JOptionPane;
-
-import implementacion.StackVector;
+import interfaces.List;
 import interfaces.Stack;
 
 public class Calculadora {
 	/* Atributos */
-	private Stack<String> miStack = new StackVector<String>();
-	private String textoArray[], dire = "";
+	//private Stack<String> miStack = new StackVector<String>();
+	private Stack<String> miStack;
+	private List<String> miLista;
+	private String textoArray[], dire = "",tipo="";
 	private static Calculadora calcu;
 	
+	public Stack<String> getMiStack() {
+		return miStack;
+	}
+	public void setMiStack(Stack<String> miStack) {
+		this.miStack = miStack;
+	}
+	public List<String> getMiLista() {
+		return miLista;
+	}
+	public void setMiLista(List<String> miLista) {
+		this.miLista = miLista;
+	}
+	private Calculadora(){
+		
+	}
 	public static Calculadora getInstance(){
 		if (calcu==null){
 			calcu = new Calculadora();
@@ -41,7 +57,7 @@ public class Calculadora {
 			int con = JOptionPane.showConfirmDialog(null,
 					"Desea tratar de nuevo", null, JOptionPane.YES_NO_OPTION);
 			if (con == JOptionPane.YES_OPTION) {
-				instru();
+				instru(tipo);
 			} else if (con == JOptionPane.NO_OPTION) {
 				JOptionPane.showMessageDialog(null,
 						"Gracias por usar el programa");
@@ -51,6 +67,12 @@ public class Calculadora {
 		return texto;
 	}
 
+	public String getTipo() {
+		return tipo;
+	}
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
 	/**
 	 * valido recibe como parametro el String operador. los admitidos son
 	 * mas,menos,multiplicacion,division. devuele true si es valido y false si
@@ -94,10 +116,10 @@ public class Calculadora {
 	}
 
 	/**
-	 * lista recorre la expresion en postfix y la va agregando a la pila. Por
+	 * listaS recorre la expresion en postfix y la va agregando a la pila. Por
 	 * ultimo despliega el resultado No recibe parametros.
 	 */
-	private void lista(String dir) {
+	private void listaS(String dir) {
 		String x = "", y = "", texto;
 		double resultado = 0, no1, no2;
 		texto = leerContenido(dir);
@@ -105,14 +127,14 @@ public class Calculadora {
 		for (String i : textoArray) {
 			// Si es un operador valido
 			if (valido(i)) {
-				if (miStack.size() >= 2) {
-					y = miStack.pop();
-					x = miStack.pop();
+				if (this.miStack.size() >= 2) {
+					y = this.miStack.pop();
+					x = this.miStack.pop();
 					no1 = Double.parseDouble(x);
 					no2 = Double.parseDouble(y);
 					// Operar
 					resultado = calcular(no1, no2, i);
-					miStack.push(Double.toString(resultado));
+					this.miStack.push(Double.toString(resultado));
 
 				}
 			}
@@ -120,7 +142,7 @@ public class Calculadora {
 			// Asumir que es un numero
 			// Si el numero es valido
 			else if (isNumeric(i) == true) {
-				miStack.push(i);
+				this.miStack.push(i);
 			}
 			// Si no es un numero
 			else if (isNumeric(i) == false) {
@@ -137,11 +159,54 @@ public class Calculadora {
 				JOptionPane.INFORMATION_MESSAGE);
 		System.exit(0);
 	}
+	/**
+	 * lista recorre la expresion en postfix y la va agregando a la pila. Por
+	 * ultimo despliega el resultado No recibe parametros.
+	 */
+	private void lista(String dir) {
+		String x = "", y = "", texto;
+		double resultado = 0, no1, no2;
+		texto = leerContenido(dir);
+		textoArray = texto.split(" ");
+		for (String i : textoArray) {
+			// Si es un operador valido
+			if (valido(i)) {
+				if (miLista.size() >= 2) {
+					y = miLista.pop();
+					x = miLista.pop();
+					no1 = Double.parseDouble(x);
+					no2 = Double.parseDouble(y);
+					// Operar
+					resultado = calcular(no1, no2, i);
+					miLista.push(Double.toString(resultado));
 
+				}
+			}
+
+			// Asumir que es un numero
+			// Si el numero es valido
+			else if (isNumeric(i) == true) {
+				miLista.push(i);
+			}
+			// Si no es un numero
+			else if (isNumeric(i) == false) {
+				JOptionPane.showMessageDialog(null,
+						"No se tiene un formato valido");
+				System.exit(0);
+			}
+
+		}
+		// Desplegar resultado
+		String newLine = System.getProperty("line.separator");
+		JOptionPane.showMessageDialog(null, "Expresion ingresada: " + texto
+				+ newLine + "Resultado= " + resultado, " Resultado",
+				JOptionPane.INFORMATION_MESSAGE);
+		System.exit(0);
+	}
 	/**
 	 * isNumeric retorna un true o false dependieno si el numero es valido.
 	 */
-	public static boolean isNumeric(String str) {
+	private static boolean isNumeric(String str) {
 		return (str.matches("[+-]?\\d*(\\.\\d+)?") && str.equals("") == false);
 	}
 
@@ -149,7 +214,8 @@ public class Calculadora {
 	 * instru Se encarga de dictar las instrucciones generales al usuario. No
 	 * recibe parametros.
 	 */
-	void instru() {
+	void instru(String s) {
+		
 		JOptionPane.showMessageDialog(null,
 				"Por favor ingrese la direccion donde se encuentra ubicado su archivo .txt\n"
 						+ "	Por ejemplo:"
@@ -158,11 +224,20 @@ public class Calculadora {
 				JOptionPane.INFORMATION_MESSAGE);
 		;
 		dire = JOptionPane.showInputDialog("Ingrese direccion: ");
-		if (dire == null) {
+		defensiva(dire);
+		if (s.equalsIgnoreCase("S")){
+			listaS(dire);
+		}
+		else if (s.equalsIgnoreCase("L")){
+			lista(dire);
+		}
+		
+	}
+	
+	void defensiva(String s){
+		if (s==null){
 			JOptionPane.showMessageDialog(null, "Gracias por usar el programa");
 			System.exit(0);
 		}
-		lista(dire);
 	}
-
 }

@@ -5,51 +5,49 @@ import java.util.List;
 import abstractas.AbstractStack;
 import interfaces.Stack;
 /**
- * clase que implementa estructura de Pila (Stack).
+ * Clase que implementa estructura de Pila (Stack).
  *
  * @author UVG
- * @version 1 agosto 11, 2016
+ * @version 2.0 agosto 15, 2016
  */
 
 public class StackList<E> extends AbstractStack<E> {
+	/** Atributos**/
 	protected List<E> vec;
 
-	public StackList()
-	// post: constructs a new, empty stack
-	{
+	/**
+	 * Constructor, construye una nueva lista
+	 */
+	public StackList(){
 		vec = new LinkedList<E>();
 	}
 
-	public void push(E item)
-	// post: the value is added to the stack
-	// will be popped next if no intervening push
-	{
+	/* (non-Javadoc)
+	 * @see abstractas.AbstractStack#push(java.lang.Object)
+	 */
+	public void push(E item){
 		vec.add(item);
 	}
 
-	public E pop()
-	// pre: stack is not empty
-	// post: most recently pushed item is removed and returned
-	{
+	/* (non-Javadoc)
+	 * @see abstractas.AbstractStack#pop()
+	 */
+	public E pop(){
 		return vec.remove(size() - 1);
 	}
 
-	public E peek()
-	// pre: stack is not empty
-	// post: top value (next to be popped) is returned
-	{
-		return vec.get(size() - 1);
-	}
 
-	public int size()
-	// post: returns the number of elements in the stack
-	{
+	/* (non-Javadoc)
+	 * @see abstractas.AbstractStack#size()
+	 */
+	public int size(){
 		return vec.size();
 	}
 
-	public boolean empty()
-	// post: returns true if and only if the stack is empty
-	{
+	/* (non-Javadoc)
+	 * @see abstractas.AbstractStack#empty()
+	 */
+	public boolean empty(){
 		return size() == 0;
 	}
 }

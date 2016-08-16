@@ -4,144 +4,67 @@ import java.util.Iterator;
 
 import abstractas.AbstractList;
 
-
-
+/**
+ * Esta clase corresponde a una lista doblemente enlazada, y utiliza la clase DoublyLinkedNode.
+ * @author Carlos Calderon, 15219
+ * @author Jorge Azmitia,15202
+ * Inspirado en codigo de BB de UVG.
+ * @version 2.0 agosto 15, 2016
+ *
+ * @param <E> Dato generico, para indicar cual sera el tipo de dato que se ingresara a la lista.
+ */
 
 public class DoublyLinkedList<E> extends AbstractList<E>{
-protected int count;
-protected DoublyLinkedNode<E> head;
-protected DoublyLinkedNode<E> tail;
+	/** Atributos**/
+	protected int count;
+	protected DoublyLinkedNode<E> head;
+	protected DoublyLinkedNode<E> tail;
 
-public DoublyLinkedList()
-// post: constructs an empty list
-{
-   head = null;
-   tail = null;
-   count = 0;
-}
+	/**
+	 * Metodo constructor, inicializa una lista doblemente enlazada. 
+	 * Con cola y y cabeza vacias y contador inicializado.
+	 */
+	public DoublyLinkedList(){
+
+		head = null;
+		tail = null;
+		count = 0;
+	}
+
+	/* (non-Javadoc)
+	 * @see interfaces.List#push(java.lang.Object)
+	 */
+	@Override
+	public void push(E value) {
+
+		tail = new DoublyLinkedNode<E>(value, null, tail); //Construye un nuevo elemento
+		// fix up head
+		if (head == null) head = tail;
+		count++;
+	}
 
 
-public void addFirst(E value)
-// pre: value is not null
-// post: adds element to head of list
-{
-   // construct a new element, making it head
-   head = new DoublyLinkedNode<E>(value, head, null);
-   // fix tail, if necessary
-   if (tail == null) tail = head;
-   count++;
-}
+	/* (non-Javadoc)
+	 * @see interfaces.List#pop()
+	 */
+	@Override
+	public E pop() {
+		DoublyLinkedNode<E> temp = tail;
+		tail = tail.previous();
+		if (tail == null) {
+			head = null;
+		} else {
+			tail.setNext(null);
+		}
+		count--;
+		return temp.value();
+	}
 
-
-public void addLast(E value)
-// pre: value is not null
-// post: adds new value to tail of list
-{
-   // construct new element
-   tail = new DoublyLinkedNode<E>(value, null, tail);
-   // fix up head
-   if (head == null) head = tail;
-   count++;
-}
-
-/*
-public E removeLast()
-// pre: list is not empty
-// post: removes value from tail of list
-{
-   DoublyLinkedNode<E> temp = tail;
-   tail = tail.previous();
-   if (tail == null) {
-       head = null;
-   } else {
-       tail.setNext(null);
-   }
-   count--;
-   return temp.value();
-}
-*/
-    @Override
-    public int size() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void clear() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public E getFirst() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public E getLast() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public E removeFirst() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public E remove(E value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void add(E value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-     @Override
-    public E get() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int indexOf(E value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int lastIndexOf(E value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public E get(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public E set(int i, E o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void add(int i, E o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public E remove(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Iterator<E> iterator() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public E remove() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public E removeLast() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	/* (non-Javadoc)
+	 * @see interfaces.List#size()
+	 */
+	@Override
+	public int size() {
+		return count;
+	}
 }

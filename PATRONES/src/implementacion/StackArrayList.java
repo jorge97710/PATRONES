@@ -9,48 +9,46 @@ import interfaces.Stack;
  * clase que implementa estructura de Pila (Stack).
  *
  * @author UVG
- * @version 1 agosto 11, 2016
+ * @version 2.0 agosto 15, 2016
  */
 public class StackArrayList<E> extends AbstractStack<E> {
 	/* Atributos */
 	protected ArrayList<E> data;
 
-	public StackArrayList()
-	// post: constructs a new, empty stack
-	{
+	/**
+	 * Constructor, construye un nuevo ArrayList
+	 */
+	public StackArrayList(){
 		data = new ArrayList<E>();
 	}
 
-	public void push(E item)
-	// post: the value is added to the stack
-	// will be popped next if no intervening push
-	{
+	/* (non-Javadoc)
+	 * @see abstractas.AbstractStack#push(java.lang.Object)
+	 */
+	public void push(E item){
 		data.add(item);
 	}
 
-	public E pop()
-	// pre: stack is not empty
-	// post: most recently pushed item is removed and returned
-	{
+	/* (non-Javadoc)
+	 * @see abstractas.AbstractStack#pop()
+	 */
+	public E pop(){
 		return data.remove(size() - 1);
 	}
 
-	public E peek()
-	// pre: stack is not empty
-	// post: top value (next to be popped) is returned
-	{
-		return data.get(size() - 1);
-	}
 
+	/* (non-Javadoc)
+	 * @see abstractas.AbstractStack#size()
+	 */
 	public int size()
-	// post: returns the number of elements in the stack
 	{
 		return data.size();
 	}
 
-	public boolean empty()
-	// post: returns true if and only if the stack is empty
-	{
+	/* (non-Javadoc)
+	 * @see abstractas.AbstractStack#empty()
+	 */
+	public boolean empty(){
 		return size() == 0;
 	}
 }
