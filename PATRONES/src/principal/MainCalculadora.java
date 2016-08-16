@@ -10,11 +10,10 @@ import interfaces.Stackfactory;
 /**
  * 
  * Esta clase se encarga de dar la interfaz para el programa. Lee un .txt con
- * una expresion en notacion polaca inversa, y luego despliega su respectivo
- * resultado.
+ * una expresion en notacion polaca inversa, y luego despliega su respectivo resultado.
  * @author Carlos Calderon, 15219
  * @author Jorge Azmitia,15202
- * @version 2.0 agosto 15, 2016
+ * @version 2.0 agosto 15, 2016 
  * 
  */
 public class MainCalculadora {
