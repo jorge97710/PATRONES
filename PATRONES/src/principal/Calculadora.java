@@ -2,6 +2,7 @@ package principal;
 
 import java.io.BufferedReader;
 
+
 import java.io.FileReader;
 import javax.swing.JOptionPane;
 import interfaces.List;
@@ -12,7 +13,9 @@ public class Calculadora {
 	//private Stack<String> miStack = new StackVector<String>();
 	private Stack<String> miStack;
 	private List<String> miLista;
-	private String textoArray[], dire = "",tipo="";
+	public String textoArray[];
+	String dire = "";
+	private String tipo="";
 	private static Calculadora calcu;
 	
 	public Stack<String> getMiStack() {
@@ -27,7 +30,7 @@ public class Calculadora {
 	public void setMiLista(List<String> miLista) {
 		this.miLista = miLista;
 	}
-	private Calculadora(){
+	Calculadora(){
 		
 	}
 	public static Calculadora getInstance(){
@@ -44,7 +47,7 @@ public class Calculadora {
 	 * 
 	 * @param archivo
 	 */
-	private String leerContenido(String archivo) {
+	String leerContenido(String archivo) {
 		String texto = "", temp = "", bfRead;
 		try {
 			BufferedReader ar = new BufferedReader(new FileReader(archivo));
@@ -81,7 +84,7 @@ public class Calculadora {
 	 * @param op
 	 *            , el operador a utilizar
 	 */
-	private boolean valido(String op) {
+	boolean valido(String op) {
 		if (op.equals("+") || op.equals("-") || op.equals("*")
 				|| op.equals("/")) {
 			return true;
@@ -101,7 +104,7 @@ public class Calculadora {
 	 * @param op
 	 *            , string del operador a utilizar
 	 */
-	private double calcular(double x, double y, String op) {
+	double calcular(double x, double y, String op) {
 		double resultado = 0.0;
 		if (op.equals("+")) {
 			resultado = (x + y);
@@ -163,7 +166,7 @@ public class Calculadora {
 	 * lista recorre la expresion en postfix y la va agregando a la pila. Por
 	 * ultimo despliega el resultado No recibe parametros.
 	 */
-	private void lista(String dir) {
+	void lista(String dir) {
 		String x = "", y = "", texto;
 		double resultado = 0, no1, no2;
 		texto = leerContenido(dir);
@@ -206,7 +209,7 @@ public class Calculadora {
 	/**
 	 * isNumeric retorna un true o false dependieno si el numero es valido.
 	 */
-	private static boolean isNumeric(String str) {
+	static boolean isNumeric(String str) {
 		return (str.matches("[+-]?\\d*(\\.\\d+)?") && str.equals("") == false);
 	}
 
@@ -239,5 +242,9 @@ public class Calculadora {
 			JOptionPane.showMessageDialog(null, "Gracias por usar el programa");
 			System.exit(0);
 		}
+	}
+	public void instru() {
+		// TODO Auto-generated method stub
+		
 	}
 }
