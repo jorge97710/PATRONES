@@ -40,7 +40,7 @@ public class MainCalculadora {
 					"Datos necesarios",
 					JOptionPane.INFORMATION_MESSAGE);
 			tipoS = JOptionPane.showInputDialog("Ingrese el tipo de Stack: ");
-			miCalculadora.defensiva(tipoS);
+			miCalculadora.defensivas(tipoS);
 			Stackfactory creadorStacks=  ProductFactory.stacks();
 			Stack miStack= creadorStacks.crearStack(tipoS);
 			miCalculadora.setMiStack(miStack);
@@ -54,7 +54,7 @@ public class MainCalculadora {
 						"Datos necesarios",
 						JOptionPane.INFORMATION_MESSAGE);
 			tipoL = JOptionPane.showInputDialog("Ingrese el tipo de Stack: ");
-			miCalculadora.defensiva(tipoL);
+			miCalculadora.defensivad(tipoL);
 			ListaFactory creadorListas=  ProductFactory.listas();
 			List miLista= creadorListas.crearLista(tipoL);
 			miCalculadora.setMiLista(miLista);

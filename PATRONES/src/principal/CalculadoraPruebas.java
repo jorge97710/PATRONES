@@ -11,7 +11,7 @@ import org.junit.Test;
  */
 public class CalculadoraPruebas {
 	/* Atributos */
-	 private Calculadora calcu = new Calculadora ();
+	 private Calculadora calcu = Calculadora.getInstance();
 	@Test
 	public void testleerContenido()throws Exception {
 		String archivo="C:\\Users\\Carlos\\Desktop\\txt\\hola.txt";
@@ -37,12 +37,18 @@ public class CalculadoraPruebas {
 	}
 	@Test
 	 public  void testinstru() throws Exception{
-		 calcu.instru();
+		 calcu.instru("S");
+		 //calcu.instru("L");
 		 assertEquals(calcu.dire,"C:\\Users\\Carlos\\Desktop\\txt\\hola.txt");
 	 }
 	@Test
 	 public  void testlista() throws Exception{
 		 calcu.lista("C:\\Users\\Carlos\\Desktop\\txt\\hola.txt");
+		 assertEquals(calcu.textoArray,"5 1 2 + 4 * + 3 -");
+	 }
+	@Test
+	 public  void testlistaS() throws Exception{
+		 calcu.listaS("C:\\Users\\Carlos\\Desktop\\txt\\hola.txt");
 		 assertEquals(calcu.textoArray,"5 1 2 + 4 * + 3 -");
 	 }
 	}

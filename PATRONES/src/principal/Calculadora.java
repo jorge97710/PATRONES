@@ -1,16 +1,22 @@
 package principal;
 
 import java.io.BufferedReader;
-
-
 import java.io.FileReader;
 import javax.swing.JOptionPane;
 import interfaces.List;
 import interfaces.Stack;
 
+/**
+ * 
+ * Esta clase se encarga de simular la calculadora, con los metodos para leer la 
+ * expresion postfix del .txt. Y operar.
+ * @author Carlos Calderon, 15219
+ * @author Jorge Azmitia,15202
+ * @version 2.0 agosto 15, 2016 
+ * 
+ */
 public class Calculadora {
 	/* Atributos */
-	//private Stack<String> miStack = new StackVector<String>();
 	private Stack<String> miStack;
 	private List<String> miLista;
 	public String textoArray[];
@@ -18,21 +24,57 @@ public class Calculadora {
 	private String tipo="";
 	private static Calculadora calcu;
 	
+	/**
+	 * Getter para Stacks
+	 * @return Un stack
+	 */
 	public Stack<String> getMiStack() {
 		return miStack;
 	}
+	/**
+	 * Setter para Stacks
+	 * @param miStack, para cambiar/modificar el Stack
+	 */
 	public void setMiStack(Stack<String> miStack) {
 		this.miStack = miStack;
 	}
+	/**
+	 * Getter para listas
+	 * @return Una lista
+	 */
 	public List<String> getMiLista() {
 		return miLista;
 	}
+	/**
+	 * @param miLista, para cambiar/modificar la lista
+	 */
 	public void setMiLista(List<String> miLista) {
 		this.miLista = miLista;
 	}
-	Calculadora(){
+	/**
+	 * Getter, para el tipo de implementacion
+	 * @return Un String que tiene el tipo de implementacion a usar
+	 */
+	public String getTipo() {
+		return tipo;
+	}
+	/**
+	 * Setter para modificar el tipo de implementacion
+	 * @param tipo , tipo de implementacion
+	 */
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+	/**
+	 * Constructor privado para que no pueda instanciarse.
+	 */
+	private Calculadora(){
 		
 	}
+	/**
+	 * Metodo para obtener una unica instancia de esta clase
+	 * @return la instancia de esta clase
+	 */
 	public static Calculadora getInstance(){
 		if (calcu==null){
 			calcu = new Calculadora();
@@ -60,6 +102,7 @@ public class Calculadora {
 			int con = JOptionPane.showConfirmDialog(null,
 					"Desea tratar de nuevo", null, JOptionPane.YES_NO_OPTION);
 			if (con == JOptionPane.YES_OPTION) {
+				//defensivad(tipo);
 				instru(tipo);
 			} else if (con == JOptionPane.NO_OPTION) {
 				JOptionPane.showMessageDialog(null,
@@ -70,12 +113,6 @@ public class Calculadora {
 		return texto;
 	}
 
-	public String getTipo() {
-		return tipo;
-	}
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
 	/**
 	 * valido recibe como parametro el String operador. los admitidos son
 	 * mas,menos,multiplicacion,division. devuele true si es valido y false si
@@ -122,7 +159,7 @@ public class Calculadora {
 	 * listaS recorre la expresion en postfix y la va agregando a la pila. Por
 	 * ultimo despliega el resultado No recibe parametros.
 	 */
-	private void listaS(String dir) {
+	void listaS(String dir) {
 		String x = "", y = "", texto;
 		double resultado = 0, no1, no2;
 		texto = leerContenido(dir);
@@ -237,14 +274,46 @@ public class Calculadora {
 		
 	}
 	
+	/**
+	 * Metodo para asegurarse que todo haya sido bien ingresado
+	 * @param s , contiene el texto a verificar
+	 */
 	void defensiva(String s){
 		if (s==null){
 			JOptionPane.showMessageDialog(null, "Gracias por usar el programa");
 			System.exit(0);
 		}
+		else if(!(s.equals("S") ||s.equals("L"))){
+			JOptionPane.showMessageDialog(null, "No ha ingresado letra valida");
+			System.exit(0);
+		}
 	}
-	public void instru() {
-		// TODO Auto-generated method stub
-		
+	/**
+	 * Metodo para asegurarse que todo haya sido bien ingresado
+	 * @param s , contiene el texto a verificar
+	 */
+	void defensivas(String s){
+		if (s==null){
+			JOptionPane.showMessageDialog(null, "Gracias por usar el programa");
+			System.exit(0);
+		}
+		else if(!(s.equals("V") ||s.equals("A")|| s.equals("LI"))){
+			JOptionPane.showMessageDialog(null, "No ha ingresado algo valido");
+			System.exit(0);
+		}
+	}
+	/**
+	 * Metodo para asegurarse que todo haya sido bien ingresado
+	 * @param s , contiene el texto a verificar
+	 */
+	void defensivad(String s){
+		if (s==null){
+			JOptionPane.showMessageDialog(null, "Gracias por usar el programa");
+			System.exit(0);
+		}
+		else if(!(s.equals("LS") ||s.equals("LD")|| s.equals("LC"))){
+			JOptionPane.showMessageDialog(null, "No ha ingresado letra valida");
+			System.exit(0);
+		}
 	}
 }
