@@ -1,4 +1,4 @@
-# 3
+# Hoja 3
 Hoja de trabajo 3, Algoritmos y estructuras de datos
 Sección: 30
 
